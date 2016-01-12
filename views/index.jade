@@ -1,5 +1,17 @@
 extends layout
+block head
+  script(src="/javascripts/services/newFormService.js")
+  script(src="/javascripts/controllers/createController.js")
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(ng-controller="createController")
+    h1= title
+    p Welcome to #{title}
+
+    button(id="new-user") New User
+    button(id="new-question" ng-click="newQuestion(counter)") New Question
+
+    div(id="new-survey-form")
+    button(id="new-survey" ng-click="createSurvey()") Submit
+    div
+      button(ng-click="dummyFunction()") dummy button
