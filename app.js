@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var surveys = require('./routes/surveys');
+
 var app = express();
 
 // view engine setup
@@ -22,8 +24,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// setup database connection
+var Mongoose = require('mongoose');
+var db = Mongoose.createConnection('localhost', 'myapp');
+
+var SurveySchema = require('./models/Survey').SurveySchema;
+var Survey = db.model('surveys', SurveySchema);
+
+
 app.use('/', routes);
 app.use('/users', users);
+app.get('/surveys', surveys.query(Survey));
+app.post('/surveys', surveys.create(Survey));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
