@@ -1,7 +1,14 @@
 doctype html
-html
+html(ng-app="surveyApp")
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/javascripts/vendor/jquery/dist/jquery.js")
+    script(src="/javascripts/vendor/angular/angular.js")
+    script(src="/javascripts/vendor/angular/angular-route.js")
+    script(src="/javascripts/app.js")
+    script(src="/javascripts/directives/newQuestion.js")
+
+    block head
   body
     block content
