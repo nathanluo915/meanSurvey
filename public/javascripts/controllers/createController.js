@@ -3,9 +3,8 @@ app.controller('createController', ['$scope', '$http', '$compile', function($sco
 
   $scope.createSurvey = function(){
     $http.post('/surveys', $scope.survey).then(function(data){
-      // $scope.surveys.push(data.data.survey);
-      // $scope.counter += 1;
-      console.log(data);
+      $scope.surveyDisplay = data.data.survey;
+      console.log($scope.survey);
     });
   };
 

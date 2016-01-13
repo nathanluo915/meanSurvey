@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.debug {border: 1px solid red;}
+
+.question-block {
+  margin-bottom: 1em;
+}
