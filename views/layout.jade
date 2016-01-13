@@ -2,9 +2,12 @@ doctype html
 html(ng-app="surveyApp")
   head
     title= title
+    link(rel='stylesheet', href='/javascripts/vendor/bootstrap/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/vendor/jquery/dist/jquery.js")
+    script(src="/javascripts/vendor/bootstrap/bootstrap.min.js")
     script(src="/javascripts/vendor/angular/angular.js")
+    script(src="/javascripts/vendor/angular/angular-resource.js")
     script(src="/javascripts/vendor/angular/angular-route.js")
     script(src="/javascripts/app.js")
     script(src="/javascripts/directives/newQuestion.js")
