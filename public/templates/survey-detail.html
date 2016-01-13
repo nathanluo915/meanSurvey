@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="survey-desc-block">
+      <h1>{{survey.name}}</h1>
+      <p>{{survey.description}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 question-block" ng-repeat="question in survey.questions">
+      <h3>{{question.content}}</h3>
+      <div class="col-md-8 {{question.type}}" ng-repeat="answer in question.answers">
+        <label>
+          <input type="{{question.type}}"> {{answer.content}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <button ng-click="dummy()">Dummy</button>
+
+</div>

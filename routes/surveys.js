@@ -4,8 +4,9 @@ var router = express.Router();
 
 router.post('/', function(req, res, next){
   var survey = {
-    name: req.body.name || "survey 1",
+    name: req.body.name,
     description: req.body.description,
+    createdAt: new Date(),
     questions: []
   };
 
@@ -31,11 +32,17 @@ router.post('/', function(req, res, next){
 
 router.get('/', function(req, res, next) {
   var collection = req.db.get('surveys');
-  console.log(req.body);
   collection.find({}, 'name', function(err, surveys){
     res.json({surveys: surveys});
   })
-  // collection.find()
 });
+
+router.get('/:id', function(req, res, next) {
+  var collection = req.db.get('surveys');
+  console.log(req);
+  collection.findOne({_id: req.params.id}, function(err, survey) {
+    res.json({survey: survey});
+  })
+})
 
 module.exports = router;
