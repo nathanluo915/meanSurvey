@@ -24,18 +24,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// setup database connection
-var Mongoose = require('mongoose');
-var db = Mongoose.createConnection('localhost', 'myapp');
+// MongoDB setup
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/myapp');
 
-var SurveySchema = require('./models/Survey').SurveySchema;
-var Survey = db.model('surveys', SurveySchema);
+app.use(function(req,res,next){
+  req.db = db;
+  next();
+});
 
 
 app.use('/', routes);
 app.use('/users', users);
-app.get('/surveys', surveys.query(Survey));
-app.post('/surveys', surveys.create(Survey));
+app.use('/surveys', surveys);
 
 
 // catch 404 and forward to error handler
