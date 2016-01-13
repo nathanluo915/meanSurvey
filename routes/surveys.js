@@ -29,4 +29,13 @@ router.post('/', function(req, res, next){
   })
 });
 
+router.get('/', function(req, res, next) {
+  var collection = req.db.get('surveys');
+  console.log(req.body);
+  collection.find({}, 'name', function(err, surveys){
+    res.json({surveys: surveys});
+  })
+  // collection.find()
+});
+
 module.exports = router;

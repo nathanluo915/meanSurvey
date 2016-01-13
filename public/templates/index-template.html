@@ -1,18 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <h1>New Survey</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="row" id="new-survey-form"></div>
-      <div class="row">
-        <button type="button" class="btn btn-primary" id="save-survey" ng-click="createSurvey()">Submit</button>
-        <button type="button" class="btn btn-primary" ng-click="dummyFunction()">Dummy</button>
-        <button type="button" class="btn btn-primary" ng-click="newQuestion(counter)">New Question</button>
-      </div>
-    </div>
+  <h1>Survey Index</h1>
+  <div class="row" ng-repeat="survey in surveys">
+    {{survey.name}}
   </div>
 </div>
