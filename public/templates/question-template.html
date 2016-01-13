@@ -1,14 +1,15 @@
-<div id="question-counter">
-  <label>Question</label>
-  <input ng-model="survey.questions[counter].content" />
-  <div class="answer-block">
+<div class="row question-block" id="question-counter">
+  <div class="form-group col-sm-12">
+    <label>Question</label>
+    <input ng-model="survey.questions[counter].content" class="form-control" />
+  </div>
+  <div class="answer-block col-sm-10">
     <answer q-index="counter" ans-index='1' />
     <answer q-index="counter" ans-index='2' />
   </div>
-  <div class="control-panel">
-    <button ng-click='newAnswer(counter)'>New Answer</button>
-    <button ng-click='removeAnswer(counter)'>Remove Answer</button>
+  <div class="control-panel col-sm-10">
+    <button type="button" class="btn btn-primary" ng-click='removeAnswer(counter)'> - </button>
+    <button type="button" class="btn btn-primary" ng-click='newAnswer(counter)'> + </button>
+    <button type="button" class="btn btn-primary" ng-click='removeQuestion(counter)'>Remove Question</button>
   </div>
-
-  <button ng-click='removeQuestion(counter)'>Remove Question</button>
 </div>
