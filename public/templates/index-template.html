@@ -1,6 +1,13 @@
+<div class="row top-block">
+</div>
 <div class="container">
-  <h1>Survey Index</h1>
-  <div class="row" ng-repeat="survey in surveys">
-    {{survey.name}}
+  <div class="row survey-list">
+    <div class="row" ng-repeat="survey in surveys" >
+      <a href="#/surveys/{{survey._id}}">
+        <div class="col-md-8 col-md-offset-2 well hoverwell">
+          <div>{{survey.name}}</div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
