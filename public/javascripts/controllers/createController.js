@@ -1,11 +1,8 @@
-app.controller('createController', ['$scope', '$http', '$compile', function($scope, $http, $compile){
+app.controller('createController', ['$scope', '$compile', 'SurveyService', function($scope, $compile, SurveyService){
   $scope.counter = 0;
 
   $scope.createSurvey = function(){
-    $http.post('/surveys', $scope.survey).then(function(data){
-      $scope.surveyDisplay = data.data.survey;
-      console.log($scope.survey);
-    });
+    SurveyService.addSurvey($scope.survey);
   };
 
   $scope.dummyFunction = function(){
