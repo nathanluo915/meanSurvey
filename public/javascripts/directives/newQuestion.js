@@ -7,6 +7,7 @@ app.directive("question", function($compile, $templateRequest){
         var template = angular.element(html);
         element.html(template);
         $compile(template)(scope);
+        element.find('input')[0].focus();
       })
     }
   };
@@ -23,6 +24,9 @@ app.directive("answer", function($compile, $templateRequest) {
         var template = angular.element(html);
         element.html(template);
         $compile(template)(scope);
+        if (attrs.ansIndex > 2) {
+          element.find('input')[0].focus();
+        }
       })
     }
   }
