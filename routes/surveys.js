@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   var collection = req.db.get('surveys');
-  collection.findOne({_id: req.params.id}, function(err, survey) {
+  collection.findOne({_id: req.params.id}, {count: 0}, function(err, survey) {
     res.json({survey: survey});
   })
 });
@@ -33,12 +33,19 @@ router.get('/:id', function(req, res, next) {
 router.put('/:id', function(req, res, next) {
   var collection = req.db.get('surveys');
   collection.findOne({_id: req.body.id}, function(err, survey) {
-    for (var qIndex in req.body.responses){
-    // survey.questions[req.body.
-
+    for (var qIndex in req.body.response){
+      var ansIndex = parseInt(req.body.response[qIndex].id);
+      survey.questions[qIndex].answers[ansIndex].count += 1;
     }
-  })
-  console.log(req.body);
+
+    collection.update({_id: req.body.id}, survey, function(err, result) {
+      if (err) {
+        res.json({err: err});
+      } else {
+        res.json({result: result});
+      }
+    });
+  });
 
 });
 
