@@ -7,15 +7,17 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8 question-block" ng-repeat="question in survey.questions">
-      <h3>{{question.content}}</h3>
-      <div class="col-md-8 {{question.type}}" ng-repeat="answer in question.answers">
-        <label>
-          <input type="{{question.type}}"> {{answer.content}}
+    <div class="col-md-8 question-choose-block" ng-repeat="(qIndex, question) in survey.questions">
+      <h3>{{question.content}}:</h3>
+      <p ng-if="formData[qIndex].id">{{question.answers[formData[qIndex].id].content}}</p>
+      <div class="col-md-8 radio" ng-repeat="(aIndex,answer) in question.answers">
+        <label class="answer-content">
+          <input type="radio" name="formData[{{qIndex}}]" ng-model="formData[qIndex].id" value="{{aIndex}}"/>{{answer.content}}
         </label>
       </div>
     </div>
   </div>
   <button ng-click="dummy()">Dummy</button>
+  <button class="btn btn-primary"ng-click="submitSurvey(formData)">Submit</button>
 
 </div>
