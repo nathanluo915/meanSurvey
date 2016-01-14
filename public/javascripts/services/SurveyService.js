@@ -27,8 +27,9 @@ app.factory('SurveyService', ['$http', '$q', function($http, $q) {
     submitResponse: function(formData){
       var deferred = $q.defer();
       $http.put('/surveys/'+ formData.id, formData).then(function(data) {
-        console.log(data);
         deferred.resolve(data);
+      }, function(err) {
+        deferred.reject(err);
       });
       return deferred.promise;
     }
