@@ -4,10 +4,19 @@
       <h1>New Survey</h1>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-sm-6">
-      <div class="row" id="new-survey-form"></div>
+    <div class="form-group col-sm-12">
+      <label for="title">Survey Title</label>
+      <input type="text" ng-model="survey.name" placeholder="Survey Title" class="form-control">
+    </div>
+    <div class="form-group col-sm-12">
+      <label for="description">Description</label>
+      <textarea type="text" ng-model="survey.description" placeholder="Survey Description (optional)" rows="4" class="form-control"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-12" id="new-survey-form"></div>
       <div class="row">
         <button type="button" class="btn btn-primary" id="save-survey" ng-click="createSurvey()">Submit</button>
         <button type="button" class="btn btn-primary" ng-click="dummyFunction()">Dummy</button>
