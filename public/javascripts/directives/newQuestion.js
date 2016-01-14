@@ -31,3 +31,17 @@ app.directive("answer", function($compile, $templateRequest) {
     }
   }
 });
+
+app.directive("score", function($compile) {
+  return {
+    restrict: 'E',
+    link: function(scope, element, attrs) {
+      var markup = "<div class='score-bar' style='width: sizeem'></div>"
+      markup = markup.replace(/size/, parseInt(attrs.score)/2);
+      var template = angular.element(markup);
+      element.replaceWith(template);
+      // $compile(element)(scope);
+    }
+
+  }
+});

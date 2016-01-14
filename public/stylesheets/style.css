@@ -1,5 +1,6 @@
 body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
@@ -22,7 +23,7 @@ a {
   cursor: pointer;
 }
 
-.question-choose-block{
+.question-choose-block, .question-display-block{
   background-color: #e7e7e7;
   padding: 1em;
   border-radius: 10px;
@@ -38,9 +39,25 @@ a {
   border-radius: 5px;
 }
 
+.answer-display-block {
+  padding: .5em;
+  height: 2em;
+}
+
 .answer-content {
   margin: .5em;
   font-size: 1.25em;
+}
+
+.score-bar{
+  background-color: #0098ff;
+  height: 155%;
+  float: left;
+  margin-right: 1em;
+}
+
+.fl{
+  float: left;
 }
 
 .top-block {
