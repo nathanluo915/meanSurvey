@@ -19,6 +19,11 @@ app.config(function($routeProvider) {
   .when('/surveys/:id',
   {
     templateUrl: '/templates/survey-detail.html',
-    controller: 'surveyDetailController'
+    controller: 'surveyTakingController'
+  })
+  .when('/surveys/:id/result',
+  {
+    templateUrl: '/templates/survey-report.html',
+    controller: 'surveyReportController'
   });
 });

@@ -1,6 +1,5 @@
 app.controller('createController', ['$scope', '$compile', 'SurveyService', function($scope, $compile, SurveyService){
   $scope.counter = 0;
-
   $scope.createSurvey = function(){
     SurveyService.addSurvey($scope.survey);
   };
@@ -38,11 +37,9 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', funct
     if (element && index > 1){
       element.remove();
     }
-
     if($scope.survey && $scope.survey.questions[qCounter] && $scope.survey.questions[qCounter].answers[index]) {
       delete $scope.survey.questions[qCounter].answers[index];
     }
-
   }
 
 }]);
