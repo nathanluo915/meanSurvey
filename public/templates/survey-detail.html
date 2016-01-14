@@ -5,7 +5,8 @@
       <p>{{survey.description}}</p>
     </div>
   </div>
-
+  <div ng-if="result">Submitted</div>
+  <div ng-if="error">Error</div>
   <div class="row">
     <div class="col-md-8 question-choose-block" ng-repeat="(qIndex, question) in survey.questions">
       <h3>{{question.content}}:</h3>
