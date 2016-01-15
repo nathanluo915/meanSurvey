@@ -1,6 +1,11 @@
 app.controller('createController', ['$scope', '$compile', 'SurveyService', function($scope, $compile, SurveyService){
   $scope.counter = 0;
   $scope.createSurvey = function(){
+    var questions = [];
+    for (var q in $scope.survey.questions) {
+      questions.push($scope.survey.questions[q]);
+    }
+    $scope.survey.questions = questions;
     SurveyService.addSurvey($scope.survey);
   };
 
