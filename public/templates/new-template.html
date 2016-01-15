@@ -19,7 +19,7 @@
       <div class="col-md-6">
         <div class="col-md-12" id="new-survey-form"></div>
         <div class="row">
-          <button type="button" class="btn btn-primary" id="save-survey" ng-dispable="newSurveyForm.$invalid" ng-click="createSurvey()">Submit</button>
+          <button type="button" class="btn btn-primary" ng-class="{'disabled': newSurveyForm.$invalid}" id="save-survey" ng-disable="newSurveyForm.$invalid" ng-click="createSurvey(survey, newSurveyForm)">Submit</button>
           <button type="button" class="btn btn-primary" ng-click="newQuestion(counter)">New Question</button>
         </div>
       </div>
