@@ -40,7 +40,6 @@ app.directive("score", function($compile) {
       markup = markup.replace(/size/, parseInt(attrs.score)/2);
       var template = angular.element(markup);
       element.replaceWith(template);
-      // $compile(element)(scope);
     }
 
   }
