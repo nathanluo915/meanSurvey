@@ -18,15 +18,7 @@ html(ng-app="surveyApp")
     nav(class="navbar navbar-default navbar-fix-top")
       div(class="container-fluid")
         div(class="navbar-header")
-            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false")
-                span(class="sr-only")
-                    |Toggle navigation
-                span(clss="icon-bar")
-                span(clss="icon-bar")
-                span(clss="icon-bar")
-
             a(class="navbar-brand" href="#/") meanSurvey
-        div(class="collapse navbar-collapse" id="menu-collapse")
             ul(class="nav navbar-nav")
                 li
                     a(href="#/surveys/new")
@@ -34,11 +26,11 @@ html(ng-app="surveyApp")
                 li
                     a(href="#/surveys")
                         | Survey List
-            form(class="navbar-form navbar-right" role="search")
-                div(class="form-group")
-                    input(type="text" class="form-control" placeholder="Search by Survey name")
-                button(type="submit" class="btn btn-default")
-                    | Search
+        form(class="navbar-form navbar-right" role="search")
+            div(class="form-group")
+                input(type="text" class="form-control" placeholder="Search by Survey name")
+            button(type="submit" class="btn btn-default")
+                | Search
 
 
     block content

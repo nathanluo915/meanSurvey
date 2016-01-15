@@ -13,6 +13,10 @@ a {
   margin-bottom: 1em;
 }
 
+input.ng-invalid.ng-dirty {
+  background-color: pink;
+}
+
 .well{
   background-color: #e7e7e7;
 }

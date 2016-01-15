@@ -1,24 +1,40 @@
 var express = require('express');
 var router = express.Router();
+QUESTION_LIMIT = 10;
+ANSWER_LIMIT = 10;
 
 router.post('/', function(req, res, next){
   var survey = req.body
-
+  var qCounter = 0, aCounter = 0;
   for (var qIndex in survey.questions) {
     for (var ansIndex in req.body.questions[qIndex].answers) {
       survey.questions[qIndex].answers[ansIndex].count = 0;
+      aCounter += 1;
+      if (aCounter > ANSWER_LIMIT) {
+        break
+      }
+    }
+    qCounter += 1;
+    if (qCounter > QUESTION_LIMIT) {
+      break
     }
   }
-  console.log(survey);
   var collection = req.db.get('surveys');
   collection.insert(survey, function(err, result){
-    res.json({survey: result});
+    var jObject = {survey: result, overflow: ""};
+    if (qCounter > QUESTION_LIMIT) {
+      jObject.overflow += "Discarded excessive questions";
+    }
+    if (aCounter > ANSWER_LIMIT) {
+      jObject.overflow += "| Discarded excessive answers";
+    }
+    res.json(jObject);
   })
 });
 
 router.get('/', function(req, res, next) {
   var collection = req.db.get('surveys');
-  collection.find({}, 'name', function(err, surveys){
+  collection.find({}, 'title', function(err, surveys){
     res.json({surveys: surveys});
   })
 });

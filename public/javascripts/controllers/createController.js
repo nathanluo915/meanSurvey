@@ -1,7 +1,11 @@
 app.controller('createController', ['$scope', '$compile', 'SurveyService', function($scope, $compile, SurveyService){
   $scope.counter = 0;
-  $scope.createSurvey = function(){
-    SurveyService.addSurvey($scope.survey);
+  $scope.survey = {questions: {length: 0}}
+  $scope.disable = true;
+  $scope.createSurvey = function(survey, newSurveyForm){
+    if (newSurveyForm.$valid){
+      SurveyService.addSurvey(survey);
+    }
   };
 
   $scope.dummyFunction = function(){
@@ -9,16 +13,25 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', funct
   };
 
   $scope.newQuestion = function(counter){
-    var ele = $compile("<question counter='"+counter+"' />")($scope);
-    angular.element('#new-survey-form').append(ele);
-    $scope.counter += 1;
+    if ($scope.survey.questions.length < 10) {
+      var ele = $compile("<question counter='"+counter+"' />")($scope);
+      angular.element('#new-survey-form').append(ele);
+      $scope.survey.questions.length += 1;
+      $scope.counter += 1;
+    } else {
+      alert("Reached max amount of questions");
+    }
   }
 
   $scope.newAnswer = function(counter){
     var targetEle = angular.element('#question-'+counter+'>.answer-block');
     var nextIndex = angular.element('#question-'+counter+'>.answer-block').children().length + 1;
-    var addEle = $compile("<answer q-index='"+counter+"' ans-index='"+nextIndex+"' />")($scope);
-    targetEle.append(addEle);
+    if (nextIndex <= 10) {
+      var addEle = $compile("<answer q-index='"+counter+"' ans-index='"+nextIndex+"' />")($scope);
+      targetEle.append(addEle);
+    } else {
+      alert("Reached max amount of answers");
+    }
   }
 
   $scope.removeQuestion = function(qCounter) {
@@ -29,6 +42,7 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', funct
     if ($scope.survey && $scope.survey.questions[qCounter] ) {
       delete $scope.survey.questions[qCounter];
     }
+    $scope.survey.questions.length -= 1;
   }
 
   $scope.removeAnswer = function(qCounter) {
