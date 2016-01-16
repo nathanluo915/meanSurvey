@@ -6,12 +6,7 @@ html(ng-app="surveyApp")
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/vendor/jquery/dist/jquery.js")
     script(src="/javascripts/vendor/bootstrap/bootstrap.min.js")
-    script(src="/javascripts/vendor/angular/angular.js")
-    script(src="/javascripts/vendor/angular/angular-resource.js")
-    script(src="/javascripts/vendor/angular/angular-route.js")
-    script(src="/javascripts/app.js")
-    script(src="/javascripts/services/SurveyService.js")
-    script(src="/javascripts/directives/newQuestion.js")
+
 
     block head
   body
@@ -20,17 +15,17 @@ html(ng-app="surveyApp")
         div(class="navbar-header")
             a(class="navbar-brand" href="#/") meanSurvey
             ul(class="nav navbar-nav")
-                li
-                    a(href="#/surveys/new")
+              li
+                a(href="#/surveys/new")
                         | Create Survey
-                li
-                    a(href="#/surveys")
+              li
+                a(href="#/surveys")
                         | Survey List
-        form(class="navbar-form navbar-right" role="search")
-            div(class="form-group")
-                input(type="text" class="form-control" placeholder="Search by Survey name")
-            button(type="submit" class="btn btn-default")
-                | Search
+
+            ul(class="nav navbar-nav navbar-nav-right")
+              li
+                a(href="/logout")
+                  | Log Out
 
 
     block content
