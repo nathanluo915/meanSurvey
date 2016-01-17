@@ -51,8 +51,16 @@ router.put('/:id', function(req, res, next) {
   var collection = req.db.get('surveys');
   collection.findOne({_id: req.body.id}, function(err, survey) {
     for (var qIndex in req.body.response){
-      var ansIndex = parseInt(req.body.response[qIndex].id);
-      survey.questions[qIndex].answers[ansIndex].count += 1;
+      for (var i in req.body.response[qIndex].ids) {
+        if (!survey.questions[qIndex].multi) {
+          var ansIndex = req.body.response[qIndex].ids[i];
+        } else {
+          if(req.body.response[qIndex].ids[i]) {
+            var ansIndex = i;
+          }
+        }
+        survey.questions[qIndex].answers[ansIndex].count += 1;
+      }
     }
 
     collection.update({_id: req.body.id}, survey, function(err, result) {
