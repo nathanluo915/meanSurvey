@@ -1,4 +1,4 @@
-var app = angular.module('surveyApp', ['ngResource', 'ngRoute']);
+var app = angular.module('surveyApp', ['ngResource', 'ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider) {
   $routeProvider.when('/surveys/new/',

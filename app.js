@@ -14,25 +14,25 @@ var surveys = require('./routes/surveys');
 var app = express();
 
 // Enable session storing
-var store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/connect_mongodb_sesson_test',
-  collection: 'mySessions'
-});
+// var store = new MongoDBStore({
+//   uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+//   collection: 'mySessions'
+// });
 
-store.on('error', function(error) {
-  assert.ifError(error);
-  assert.ok(false);
-})
+// store.on('error', function(error) {
+//   assert.ifError(error);
+//   assert.ok(false);
+// })
 
-app.use(session({
-  secret:"qiewurxvjh",
-  cookie: {
-    maxAge: 30*60*1000,
-  },
-  saveUninitialized: true,
-  resave: true,
-  store: store
-}));
+// app.use(session({
+//   secret:"qiewurxvjh",
+//   cookie: {
+//     maxAge: 30*60*1000,
+//   },
+//   saveUninitialized: true,
+//   resave: true,
+//   store: store
+// }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,7 +43,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('mysecret'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 

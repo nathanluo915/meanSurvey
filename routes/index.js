@@ -3,11 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (req.session.user) {
-    res.render('index', { title: 'Express' });
-  } else {
-    res.render('login-register');
+  // if (req.session.user) {
+  //   res.render('index', { title: 'Express' });
+  // } else {
+  //   res.render('login-register');
+  // }
+  if (!req.cookies.voted) {
+    res.cookie('voted', "");
   }
+  res.render('index', {title: 'Express'});
 });
 
 router.post('/login', function(req, res, next) {
@@ -20,7 +24,6 @@ router.post('/login', function(req, res, next) {
 
 router.post('/signup', function(req, res, next) {
   var users = req.db.get('users');
-  console.log(req.body.username);
   users.insert({username: req.body.username}, function(err, result){
     req.session.user = result;
     res.redirect('/');

@@ -6,6 +6,7 @@ ANSWER_LIMIT = 10;
 router.post('/', function(req, res, next){
   var survey = req.body
   var qCounter = 0, aCounter = 0;
+  survey.created_at = new Date();
   for (var qIndex in survey.questions) {
     for (var ansIndex in req.body.questions[qIndex].answers) {
       survey.questions[qIndex].answers[ansIndex].count = 0;
@@ -21,7 +22,7 @@ router.post('/', function(req, res, next){
   }
   var collection = req.db.get('surveys');
   collection.insert(survey, function(err, result){
-    var jObject = {survey: result, overflow: ""};
+    var jObject = {surveyId: result._id, overflow: ""};
     if (qCounter > QUESTION_LIMIT) {
       jObject.overflow += "Discarded excessive questions";
     }
@@ -58,11 +59,13 @@ router.put('/:id', function(req, res, next) {
       if (err) {
         res.json({err: err});
       } else {
+        var voted = req.cookies.voted;
+        voted += ("&" + req.body.id);
+        res.cookie('voted', voted);
         res.json({result: result});
       }
     });
   });
-
 });
 
 module.exports = router;

@@ -1,10 +1,12 @@
-app.controller('createController', ['$scope', '$compile', 'SurveyService', function($scope, $compile, SurveyService){
+app.controller('createController', ['$scope', '$compile', 'SurveyService', '$location', function($scope, $compile, SurveyService, $location){
   $scope.counter = 0;
   $scope.survey = {questions: {length: 0}}
   $scope.disable = true;
   $scope.createSurvey = function(survey, newSurveyForm){
     if (newSurveyForm.$valid){
-      SurveyService.addSurvey(survey);
+      SurveyService.addSurvey(survey).then(function(data){
+        $location.path('/surveys/' + data.surveyId + '/result');
+      });
     }
   };
 
