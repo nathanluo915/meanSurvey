@@ -3,10 +3,9 @@ extends layout
 block content
   form(action="/login" method="post")
     input(type="text" name="username" placeholder="username")
-    label Login
-    input(type="submit")
+    input(type="submit" value="Log In")
 
   form(action="/signup" method="post")
-    input(type="text" name="username" placeholder="username")
-    label Sign Up
-    input(type="submit")
+    input(type="text" name="username" placeholder="Username")
+    input(type="password" name="password" placeholder="Password")
+    input(type="submit" value="Sign Up")
