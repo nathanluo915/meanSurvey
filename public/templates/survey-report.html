@@ -9,7 +9,7 @@
       <div class="col-sm-12 question-display-block" ng-repeat="question in survey.questions">
         <h4>{{question.content}}</h4>
         <div class="col-sm-12 answer-display-block" ng-repeat="answer in question.answers">
-          <score data-score="{{answer.count}}"/><div class="fl"> {{answer.content}}</div>
+          <score data-score="{{answer.count}}"/><div class="fl">{{answer.count}} | {{answer.content}}</div>
         </div>
       </div>
     </div>
