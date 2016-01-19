@@ -10,10 +10,6 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', '$loc
     }
   };
 
-  $scope.dummyFunction = function(){
-    $scope.counter += 0;
-  };
-
   $scope.newQuestion = function(counter){
     if ($scope.survey.questions.length < 10) {
       var ele = $compile("<question counter='"+counter+"' />")($scope);

@@ -16,10 +16,6 @@ app.controller('surveyTakingController', ['$scope', 'SurveyService', '$routePara
     }
   });
 
-  $scope.dummy = function(){
-    $scope.dummyContainer = 0;
-  }
-
   $scope.submitSurvey = function(formData){
     var reqBody = {id: $scope.survey._id, response: formData};
     SurveyService.submitResponse(reqBody).then(function(surveyResult){
