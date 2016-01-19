@@ -50,10 +50,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // MongoDB setup
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/myapp');
+
+var db = monk(process.env.MONGOLAB_URI || 'localhost:27017/myapp');
 
 app.use(function(req,res,next){
   req.db = db;
+  console.log('Connected to Server');
   next();
 });
 

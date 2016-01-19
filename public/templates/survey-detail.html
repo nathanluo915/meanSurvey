@@ -8,15 +8,27 @@
   <div ng-if="result">Submitted</div>
   <div ng-if="error">Error</div>
   <div class="row">
-    <div class="col-md-8 question-choose-block" ng-repeat="(qIndex, question) in survey.questions">
-      <h3>{{question.content}}:</h3>
-      <p ng-if="formData[qIndex].id">{{question.answers[formData[qIndex].id].content}}</p>
-      <div class="col-md-8 radio" ng-repeat="(aIndex,answer) in question.answers">
-        <label class="answer-content">
-          <input type="radio" name="formData[{{qIndex}}]" ng-model="formData[qIndex].id" value="{{aIndex}}"/>{{answer.content}}
-        </label>
+    <form name="responseForm">
+      <div class="col-md-8 question-choose-block" ng-repeat="(qIndex, question) in survey.questions">
+        <h3>{{question.content}}:</h3>
+        <div ng-if="!question.multi">
+          <p ng-if="formData[qIndex].ids[0]">{{question.answers[formData[qIndex].ids[0]].content}}</p>
+          <div class="col-md-8 radio" ng-repeat="(aIndex,answer) in question.answers">
+            <label class="answer-content">
+              <input type="radio" name="formData[{{qIndex}}]" ng-model="formData[qIndex].ids[0]" value="{{aIndex}}"/>{{answer.content}}
+            </label>
+          </div>
+        </div>
+
+        <div ng-if="question.multi">
+          <div class="col-md-8" ng-repeat="(aIndex,answer) in question.answers">
+            <label class="answer-content">
+              <input type="checkbox" name="formData[{{qIndex}}]" ng-model="formData[qIndex].ids[aIndex]" />{{answer.content}}
+            </label>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
   <button ng-click="dummy()">Dummy</button>
   <button class="btn btn-primary"ng-click="submitSurvey(formData)">Submit</button>
