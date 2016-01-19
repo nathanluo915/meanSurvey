@@ -1,12 +1,12 @@
 <div class="row question-block" id="question-counter">
   <div>{{survey.questions[counter].multi}}</div>
-  <div class="form-group col-sm-10">
+  <div class="form-group col-sm-8">
     <label>Question</label>
     <input ng-model="survey.questions[counter].content" required class="form-control" />
-  </div>
-  <div class="form-group col-sm-2">
-    <label>Multiple Choice</label>
-    <input type="checkbox" ng-model="survey.questions[counter].multi">
+    <div class="form-group col-sm-4">
+      <label>Multiple Choice</label>
+      <input type="checkbox" ng-model="survey.questions[counter].multi">
+    </div>
   </div>
   <div class="answer-block col-sm-8">
     <answer q-index="counter" ans-index='1' />
