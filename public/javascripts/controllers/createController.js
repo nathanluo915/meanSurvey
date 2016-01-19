@@ -1,7 +1,7 @@
 app.controller('createController', ['$scope', '$compile', 'SurveyService', '$location', function($scope, $compile, SurveyService, $location){
   $scope.counter = 0;
   $scope.survey = {questions: {length: 0}}
-  $scope.disable = true;
+  $scope.confirmation = [];
   $scope.createSurvey = function(survey, newSurveyForm){
     if (newSurveyForm.$valid){
       SurveyService.addSurvey(survey).then(function(data){
@@ -19,6 +19,7 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', '$loc
       var ele = $compile("<question counter='"+counter+"' />")($scope);
       angular.element('#new-survey-form').append(ele);
       $scope.survey.questions.length += 1;
+      $scope.confirmation[counter] = false;
       $scope.counter += 1;
     } else {
       alert("Reached max amount of questions");
@@ -45,6 +46,14 @@ app.controller('createController', ['$scope', '$compile', 'SurveyService', '$loc
       delete $scope.survey.questions[qCounter];
     }
     $scope.survey.questions.length -= 1;
+  }
+
+  $scope.removeQuestionAlert = function(qCounter) {
+    $scope.confirmation[qCounter] = true;
+  }
+
+  $scope.keepQuestion = function(qCounter) {
+    $scope.confirmation[qCounter] = false;
   }
 
   $scope.removeAnswer = function(qCounter) {
