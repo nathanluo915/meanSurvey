@@ -1,4 +1,4 @@
 <div class="form-group">
   <label>Answer ansCounter</label>
-  <input ng-model="survey.questions[q-index].answers[ans-index].content" required class="form-control"/>
+  <input ng-model="survey.questions[q-index].answers[ans-index].content" ng-required="survey.questions[q-index].answers[ans-index]!=undefined" class="form-control"/>
 </div>

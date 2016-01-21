@@ -1,7 +1,7 @@
 <div class="row question-block" id="question-counter">
   <div class="form-group col-sm-8">
     <label>Question</label>
-    <input ng-model="survey.questions[counter].content" required class="form-control" />
+    <input ng-model="survey.questions[counter].content" ng-required="survey.questions[counter]!=undefined" class="form-control" />
     <div class="form-group col-sm-4">
       <label>Multiple Choice</label>
       <input type="checkbox" ng-model="survey.questions[counter].multi">
