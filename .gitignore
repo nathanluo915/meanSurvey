@@ -3,3 +3,8 @@ node_modules
 .log
 Dockerfile
 docker-compose.yml
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
