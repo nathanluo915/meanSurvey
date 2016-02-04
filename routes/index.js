@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   if (!req.cookies.voted) {
     res.cookie('voted', "");
   }
-  res.render('index', {title: 'Express'});
+  res.render('index', {title: 'meanSurvey'});
 });
 
 router.post('/login', function(req, res, next) {
